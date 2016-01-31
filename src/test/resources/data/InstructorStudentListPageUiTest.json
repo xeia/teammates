@@ -55,8 +55,7 @@
     },
     "course4": {
       "id": "course4",
-      "name": "Name of Course 4",
-      "isArchived": true
+      "name": "Name of Course 4"
     }
   },
 
@@ -117,6 +116,7 @@
       "name": "Instructor1 Course4",
       "email": "instr@course4.tmt",
       "role":"Co-owner",
+      "isArchived":true,
       "isDisplayedToStudents":true,
       "displayedName":"Instructor",
       "instructorPrivilegesAsText": "{\n  \"courseLevel\": {\n    \"canviewstudentinsection\": true,\n    \"cangivecommentinsection\": true,\n    \"cansubmitsessioninsection\": true,\n    \"canmodifysessioncommentinsection\": true,\n    \"canmodifycommentinsection\": true,\n    \"canmodifycourse\": true,\n    \"canviewsessioninsection\": true,\n    \"canmodifysession\": true,\n    \"canviewcommentinsection\": true,\n    \"canmodifystudent\": true,\n    \"canmodifyinstructor\": true\n  },\n  \"sectionLevel\": {},\n  \"sessionLevel\": {}\n}"
