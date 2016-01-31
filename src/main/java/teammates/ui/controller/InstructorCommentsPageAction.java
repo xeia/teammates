@@ -18,7 +18,6 @@ import teammates.common.datatransfer.StudentAttributes;
 import teammates.common.exception.EntityDoesNotExistException;
 import teammates.common.util.Const;
 import teammates.logic.api.GateKeeper;
-import teammates.logic.api.Logic;
 
 /**
  * Action: Showing the InstructorCommentsPage for an instructor
@@ -122,7 +121,7 @@ public class InstructorCommentsPageAction extends Action {
              || course.id.equals(courseId)) {
                 if (courseId == "") {
                     courseId = course.id;
-                    instructor = logic.getInstructorForGoogleId(courseId, account.googleId);
+                    instructor = instructorOfCourse;
                 }
                 coursePaginationList.add(course.id);
             }

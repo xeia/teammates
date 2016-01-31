@@ -783,17 +783,6 @@ public class Logic {
     }
     
     
-    /**
-     * Preconditions: <br>
-     * * All parameters are non-null.
-     * 
-     * @return true if the course has been archived by the instructor specified
-     */
-    public static boolean isCourseArchived(InstructorAttributes instructor) {
-        Assumption.assertNotNull(ERROR_NULL_PARAMETER, instructor);
-        
-        return coursesLogic.isCourseArchived(instructor);
-    }
     
     /**
      * Preconditions: <br>

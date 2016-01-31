@@ -767,11 +767,6 @@ public class CoursesLogic {
     }
     
     
-    
-    public boolean isCourseArchived(InstructorAttributes instructor) {
-        return instructor.isArchived;
-    }
-    
     public Map<String, List<String>> getCourseIdToSectionNamesMap(List<CourseAttributes> courses)
                                     throws EntityDoesNotExistException {
         Map<String, List<String>> courseIdToSectionName = new HashMap<String, List<String>>();
@@ -789,7 +784,7 @@ public class CoursesLogic {
         List<String> archivedCourseIds = new ArrayList<String>();
         for (CourseAttributes course : allCourses) {
             InstructorAttributes instructor = instructorsForCourses.get(course.id);
-            if (isCourseArchived(instructor)) {
+            if (instructor.isArchived) {
                 archivedCourseIds.add(course.id);
             }
         }
