@@ -24,7 +24,6 @@ import teammates.common.util.Sanitizer;
 import teammates.common.util.StringHelper;
 import teammates.common.util.TimeHelper;
 import teammates.common.util.Url;
-import teammates.logic.api.Logic;
 import teammates.ui.template.ElementTag;
 import teammates.ui.template.InstructorFeedbackSessionActions;
 
@@ -895,9 +894,7 @@ public class PageData {
         }
     }
     
-    public boolean isCourseArchived(String courseId, String googleId) {
-        return Logic.isCourseArchived(courseId, googleId);
-    }
+ 
     
     @SuppressWarnings("unused")
     private void ___________methods_to_generate_feedback_response_comments() {

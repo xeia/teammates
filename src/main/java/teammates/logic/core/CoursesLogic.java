@@ -651,7 +651,7 @@ public class CoursesLogic {
                 log.warning("Course was deleted but the Instructor still exists: " + Const.EOL 
                             + instructor.toString());
             } else {
-                boolean isCourseArchived = isCourseArchived(instructor.courseId, instructor.googleId);
+                boolean isCourseArchived = instructor.isArchived;
                 if (isCourseArchived) {
                     courseList.add(course);
                 }
@@ -767,15 +767,9 @@ public class CoursesLogic {
     }
     
     
-    public boolean isCourseArchived(String courseId, String instructorGoogleId) {
-        CourseAttributes course = getCourse(courseId);
-        InstructorAttributes instructor = instructorsLogic.getInstructorForGoogleId(courseId, instructorGoogleId);
-        return isCourseArchived(course, instructor);
-    }
     
-    public boolean isCourseArchived(CourseAttributes course, InstructorAttributes instructor) {
-        boolean isCourseArchived = (instructor.isArchived != null) ? instructor.isArchived : course.isArchived;
-        return isCourseArchived;
+    public boolean isCourseArchived(InstructorAttributes instructor) {
+        return instructor.isArchived;
     }
     
     public Map<String, List<String>> getCourseIdToSectionNamesMap(List<CourseAttributes> courses)
@@ -789,34 +783,13 @@ public class CoursesLogic {
         return courseIdToSectionName;
     }
     
-    // TODO: Optimize extractActiveCourses() and extractArchivedCourses() to reduce the number of repeated calls of
-    // isCourseArchived(), which retrieves information from the database
-    
-    public List<CourseDetailsBundle> extractActiveCourses(List<CourseDetailsBundle> courseBundles, String googleId) {
-        List<CourseDetailsBundle> result = new ArrayList<CourseDetailsBundle>();
-        for (CourseDetailsBundle courseBundle : courseBundles) {
-            if (!isCourseArchived(courseBundle.course.id, googleId)) {
-                result.add(courseBundle);
-            }
-        }
-        return result;
-    }
-    
-    public List<CourseDetailsBundle> extractArchivedCourses(List<CourseDetailsBundle> courseBundles, String googleId) {
-        List<CourseDetailsBundle> result = new ArrayList<CourseDetailsBundle>();
-        for (CourseDetailsBundle courseBundle : courseBundles) {
-            if (isCourseArchived(courseBundle.course.id, googleId)) {
-                result.add(courseBundle);
-            }
-        }
-        return result;
-    }
-    
+   
+  
     public List<String> getArchivedCourseIds(List<CourseAttributes> allCourses, Map<String, InstructorAttributes> instructorsForCourses) {
         List<String> archivedCourseIds = new ArrayList<String>();
         for (CourseAttributes course : allCourses) {
             InstructorAttributes instructor = instructorsForCourses.get(course.id);
-            if (isCourseArchived(course, instructor)) {
+            if (isCourseArchived(instructor)) {
                 archivedCourseIds.add(course.id);
             }
         }

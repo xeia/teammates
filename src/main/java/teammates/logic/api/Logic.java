@@ -782,18 +782,6 @@ public class Logic {
         return coursesLogic.getArchivedCoursesForInstructor(googleId);
     }
     
-    /**
-     * Preconditions: <br>
-     * * All parameters are non-null.
-     * 
-     * @return true if the course has been archived by the instructor specified
-     */
-    public static boolean isCourseArchived(String courseId, String instructorGoogleId) {
-        Assumption.assertNotNull(ERROR_NULL_PARAMETER, courseId);
-        Assumption.assertNotNull(ERROR_NULL_PARAMETER, instructorGoogleId);
-        
-        return coursesLogic.isCourseArchived(courseId, instructorGoogleId);
-    }
     
     /**
      * Preconditions: <br>
@@ -801,11 +789,10 @@ public class Logic {
      * 
      * @return true if the course has been archived by the instructor specified
      */
-    public static boolean isCourseArchived(CourseAttributes course, InstructorAttributes instructor) {
-        Assumption.assertNotNull(ERROR_NULL_PARAMETER, course);
+    public static boolean isCourseArchived(InstructorAttributes instructor) {
         Assumption.assertNotNull(ERROR_NULL_PARAMETER, instructor);
         
-        return coursesLogic.isCourseArchived(course, instructor);
+        return coursesLogic.isCourseArchived(instructor);
     }
     
     /**
@@ -2694,18 +2681,6 @@ public class Logic {
     private void ____helper_methods________________________________________() {
     }
     
-    public List<CourseDetailsBundle> extractActiveCourses(List<CourseDetailsBundle> courseBundles, String googleId) {
-        Assumption.assertNotNull(courseBundles);
-        Assumption.assertNotNull(googleId);
-        return coursesLogic.extractActiveCourses(courseBundles, googleId);
-    }
-    
-    public List<CourseDetailsBundle> extractArchivedCourses(List<CourseDetailsBundle> courseBundles, String googleId) {
-        Assumption.assertNotNull(courseBundles);
-        Assumption.assertNotNull(googleId);
-        return coursesLogic.extractArchivedCourses(courseBundles, googleId);
-    }
-   
     
     public List<String> getArchivedCourseIds(List<CourseAttributes> allCourses, Map<String, InstructorAttributes> instructorsForCourses) {
         Assumption.assertNotNull(allCourses);

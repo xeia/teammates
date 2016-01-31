@@ -57,7 +57,7 @@ public class InstructorStudentListPageAction extends Action {
             InstructorAttributes instructor = instructors.get(course.id);
             boolean isInstructorAllowedToModify = instructor.isAllowedForPrivilege(
                                             Const.ParamsNames.INSTRUCTOR_PERMISSION_MODIFY_STUDENT);
-            boolean isCourseArchived = Logic.isCourseArchived(course, instructor);
+            boolean isCourseArchived = instructor.isArchived;
             boolean isCourseDisplayed = displayArchive || !isCourseArchived;
             if (isCourseDisplayed) {
                 coursesToDisplay.add(new InstructorStudentListPageCourseData(course, isCourseArchived,
