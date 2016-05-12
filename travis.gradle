@@ -4,6 +4,7 @@ apply plugin: "checkstyle"
 apply plugin: "pmd"
 apply plugin: "findbugs"
 apply plugin: "jacoco"
+apply plugin: "com.github.kt3k.coveralls"
 
 def appengineVersion = "1.9.27"
 def numOfTestRetries = 3
@@ -16,9 +17,13 @@ compileTestJava.options.encoding = "UTF-8"
 buildscript {
     repositories {
         mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath "com.google.appengine:gradle-appengine-plugin:1.9.30"
+        classpath "org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.6.3"
     }
 }
 
@@ -327,7 +332,7 @@ jacocoTestReport {
     sourceDirectories = files(sourceSets.main.java.srcDirs, sourceSets.test.java.srcDirs)
     classDirectories =  files(sourceSets.main.output, sourceSets.test.output)
     reports {
-        xml.enabled false
+        xml.enabled true
         html.enabled true
     }
     afterEvaluate {
@@ -337,7 +342,18 @@ jacocoTestReport {
     }
 }
 
-defaultTasks "staticAnalysis", "appengineRun", "travisTests", "appengineStop", "jacocoTestReport"
+coveralls {
+    sourceDirs = files(sourceSets.main.java.srcDirs, sourceSets.test.java.srcDirs).files.absolutePath
+}
+
+tasks.coveralls {
+    dependsOn jacocoTestReport
+    onlyIf {
+        System.env.'CI'
+    }
+}
+
+defaultTasks "staticAnalysis", "appengineRun", "travisTests", "appengineStop", "coveralls"
 
 // LOCAL TEST TASKS (NOT USED CURRENTLY)
 
