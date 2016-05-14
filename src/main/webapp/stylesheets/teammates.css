@@ -163,11 +163,16 @@ h2 {
 
 #loginHolder input{
     color: #00FF00;
-       font-weight: bold;
-       border-style: none;
-       background-color: black;
-       cursor: pointer;
+    font-weight: bold;
+    border-style: none;
+    background-color: black;
+    cursor: pointer;
 }
+
+#loginHolder input[type="submit"]:hover {
+    color: #FFFFFF;
+    text-decoration: underline;
+} 
 
 #loginHolder form{
     width: 120px;
