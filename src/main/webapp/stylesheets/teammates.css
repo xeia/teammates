@@ -94,6 +94,10 @@ h2 {
 #header {
     background-color: black;
     height: 60px;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .3);
 }
 
 #headerWrapper {
@@ -127,6 +131,7 @@ h2 {
    font-size: 14px;
    line-height: 60px;
    font-weight: bold;
+   position: relative;
 }
 
 #navbar li {
@@ -186,6 +191,7 @@ h2 {
 #mainContent {
     width: 1000px;
     margin: 0px auto;
+    padding-top: 70px;
 }
 
 #mainContent .toc{

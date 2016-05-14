@@ -18,6 +18,18 @@ var TESTIMONIALS = ['Congratulations for creating and managing such a wonderful 
 var LOOP_INTERVAL = "5000"; // in milliseconds
 var CURRENT_TESTIMONIAL = 0;
 
+// NAVBAR MODIFICATION
+var nav_curr = document.getElementsByClassName("current");
+var url_triangle = '../images/triangle.gif';
+window.onscroll = function(e) {
+//    alert(document.body.scrollTop);
+    if (document.body.scrollTop > 20) {
+        nav_curr[0].style.backgroundImage = "url()";
+    } else {
+        nav_curr[0].style.backgroundImage = "url(" + url_triangle + ")";
+    }
+}
+
 function instructorLogin() {
     // send request
     requestInstructorLogin();
